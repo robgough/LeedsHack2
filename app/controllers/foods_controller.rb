@@ -9,4 +9,9 @@ class FoodsController < ApplicationController
     redirect_to :controller => 'dashboard', :action => 'home', :active_date => params[:active_date]
   end
 
+  def destroy
+  	food = Food.find(params[:id])
+  	food.destroy
+  	redirect_to :controller => 'dashboard', :action => 'home', :active_date => params[:active_date]
+  end
 end

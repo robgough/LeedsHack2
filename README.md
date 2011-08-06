@@ -11,9 +11,13 @@ It's a simple way of being able to track weight loss progress, and share your pr
 - Weight Loss Tracking
   - Public progress, with no actual weight details.
   - Seinfield-style calendar, with +/- amount
+  - weight input [done]
+      - saved as pounds in db [done]
+      - 2 decimal places. [done]
 - Food Log
   - Name [done]
   - Estimated Calories [done]
+  - Remove [done]
   - Totals
       - Today
       - Of Daily Allowance/How many left
@@ -28,7 +32,7 @@ It's a simple way of being able to track weight loss progress, and share your pr
   - Public Profile
   - Access Control List
   - Personal Settings
-      - Daily Calories
+      - Daily Calorie Limit
       - Next Weight Target
       - Show Public Calendar
 

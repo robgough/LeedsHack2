@@ -5,5 +5,6 @@ class DashboardController < ApplicationController
 		@active_date ||= Date.today
 
 		@foods = Food.by_user_on_date(current_user, @active_date)
+		@weight = Weight.by_user_on_date(current_user, @active_date)[0]
 	end
 end

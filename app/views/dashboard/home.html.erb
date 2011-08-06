@@ -1,6 +1,5 @@
 <h1><%= @active_date.strftime("%A #{@active_date.day.ordinalize} %B, %Y") %></h1>
-
-<p>
+<h2>Food Diary</h2>
 <a href="?active_date=
 	<%= @active_date.yesterday.strftime("%Y_%m_%d") %>" alt="The previous day">
 	<%= @active_date.yesterday.strftime("%A #{@active_date.day.ordinalize} %B") %>
@@ -17,14 +16,17 @@
 <% if @foods %>
 <ul>
 	<% @foods.each do |x| %>
-		<li><%= "#{x.food} (#{x.calories})" %></li>
+		<li>
+			<%= "#{x.food} (#{x.calories})" %> 
+			<%= link_to "x", {:controller =>"foods", :action => "destroy", :id => x.id, :active_date => @active_date.strftime("%Y_%m_%d")}, :confirm => "Are you sure?", :method => :delete %>
+		</li>
 	<% end %>
 </ul>
 <% end %> 
 
 <%= form_tag foods_path do %>
 	<p>
-		<%= text_field_tag :food, "", :placeholder => "food"  %>
+		<%= text_field_tag  :food, "", :placeholder => "food"  %>
 		<%= text_field_tag :calories, "", :placeholder => "kcal" %>
 		<%= hidden_field_tag :active_date, @active_date.strftime("%Y_%m_%d") %>
 		<br />
@@ -32,4 +34,20 @@
 	</p>
 <% end %>
 
-</p>
+<h2>Todays Weight</h2>
+
+<% if @weight %>
+<p><%= "Today's weight is #{@weight.pounds} pounds." %></p>
+<% else %>
+<p>You've not entered a weight yet.</p>
+<% end %> 
+
+<%= form_tag weights_path do %>
+	<p>
+		<%= text_field_tag :weight_in_pounds, "", :placeholder => "weight in pounds"  %> or<br />
+		<%= text_field_tag :weight_in_stone, "", :placeholder => "stone pounds fraction"  %>
+		<%= hidden_field_tag :active_date, @active_date.strftime("%Y_%m_%d") %>
+		<br />
+		<%= submit_tag(value="Add") %>
+	</p>
+<% end %>

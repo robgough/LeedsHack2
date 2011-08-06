@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 	attr_accessible :email, :password, :password_confirmation
 
 	has_many :foods, :dependent => :destroy
+	has_many :weights, :dependent => :destroy
 
 	attr_accessor :password
 	before_save :encrypt_password
