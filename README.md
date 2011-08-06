@@ -15,10 +15,11 @@ It's a simple way of being able to track weight loss progress, and share your pr
   - Name
   - Estimated Calors
 - User Accounts
-  - Login
-  - Logout
-  - Join
+  - Login [done]
+  - Logout [done]
+  - Join [done]
   - Public Profile
+  - Access Control List
 
 [1]:http://robgough.net
 [2]:http://leedshack.com
