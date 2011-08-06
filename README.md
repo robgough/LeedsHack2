@@ -15,11 +15,11 @@ It's a simple way of being able to track weight loss progress, and share your pr
   - Name [done]
   - Estimated Calories [done]
   - Totals
-    - Today
-    - Of Daily Allowance/How many left
+      - Today
+      - Of Daily Allowance/How many left
 - Common Dashboard
-  - Daily View
-  - Switch between days in history
+  - Daily View [done]
+  - Switch between days in history [done]
   - Make it pretty
 - User Accounts
   - Login [done]
@@ -28,9 +28,9 @@ It's a simple way of being able to track weight loss progress, and share your pr
   - Public Profile
   - Access Control List
   - Personal Settings
-    - Daily Calories
-    - Next Weight Target
-    - Show Public Calendar
+      - Daily Calories
+      - Next Weight Target
+      - Show Public Calendar
 
 [1]:http://robgough.net
 [2]:http://leedshack.com
