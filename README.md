@@ -12,17 +12,25 @@ It's a simple way of being able to track weight loss progress, and share your pr
   - Public progress, with no actual weight details.
   - Seinfield-style calendar, with +/- amount
 - Food Log
-  - Name
-  - Estimated Calors
+  - Name [done]
+  - Estimated Calories [done]
+  - Totals
+    - Today
+    - Of Daily Allowance/How many left
 - Common Dashboard
   - Daily View
   - Switch between days in history
+  - Make it pretty
 - User Accounts
   - Login [done]
   - Logout [done]
   - Join [done]
   - Public Profile
   - Access Control List
+  - Personal Settings
+    - Daily Calories
+    - Next Weight Target
+    - Show Public Calendar
 
 [1]:http://robgough.net
 [2]:http://leedshack.com

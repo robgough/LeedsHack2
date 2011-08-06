@@ -14,4 +14,22 @@
 	</a>
 <% end %>
 
+<% if @foods %>
+<ul>
+	<% @foods.each do |x| %>
+		<li><%= "#{x.food} (#{x.calories})" %></li>
+	<% end %>
+</ul>
+<% end %> 
+
+<%= form_tag foods_path do %>
+	<p>
+		<%= text_field_tag :food, "", :placeholder => "food"  %>
+		<%= text_field_tag :calories, "", :placeholder => "kcal" %>
+		<%= hidden_field_tag :active_date, @active_date.strftime("%Y_%m_%d") %>
+		<br />
+		<%= submit_tag(value="Add") %>
+	</p>
+<% end %>
+
 </p>

@@ -9,6 +9,10 @@ gem 'sqlite3'
 
 gem "bcrypt-ruby", :require => "bcrypt"
 
+group :development do
+	gem 'annotate'
+end
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

@@ -28,6 +28,7 @@ GEM
       activemodel (= 3.0.9)
       activesupport (= 3.0.9)
     activesupport (3.0.9)
+    annotate (2.4.0)
     arel (2.0.10)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
@@ -73,6 +74,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   bcrypt-ruby
   rails (= 3.0.9)
   sqlite3

@@ -1,4 +1,6 @@
 LeedsHack2::Application.routes.draw do
+  get "foods/create"
+
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
   get "join" => "users#new", :as => "join"
@@ -11,4 +13,5 @@ LeedsHack2::Application.routes.draw do
       get 'home'
     end
   end
+  resources :foods
 end

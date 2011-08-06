@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  food: MyString
+  calories: 1
+
+two:
+  user_id: 1
+  food: MyString
+  calories: 1
+
+# == Schema Information
+#
+# Table name: foods
+#
+#  id         :integer         not null, primary key
+#  user_id    :integer
+#  food       :string(255)
+#  calories   :integer
+#  date       :date
+#  created_at :datetime
+#  updated_at :datetime
+#
+
