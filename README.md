@@ -14,6 +14,9 @@ It's a simple way of being able to track weight loss progress, and share your pr
 - Food Log
   - Name
   - Estimated Calors
+- Common Dashboard
+  - Daily View
+  - Switch between days in history
 - User Accounts
   - Login [done]
   - Logout [done]
