@@ -1,0 +1,27 @@
+<h1>User Profiles</h1>
+<%
+	@user.weights.sort_by! { |x| x.date }
+	weight_list = @user.weights
+	initial_weight = weight_list[0].pounds
+	last_weight = weight_list[0].pounds
+%>
+<% weight_list.each do |weight| %>
+	<% difference = weight.pounds - last_weight %>
+	<%
+		happy_class = 'meh'
+		happy_class = 'bad' if difference > 0
+		happy_class = 'good' if difference < 0
+	%>
+	<div class="day <%= happy_class %>">
+		<%= "+" if difference > 0 %><%= number_to_human(difference, :strip_insignificant_zeros => true) %>
+		<!--(<%= last_weight %>)
+		(<%= weight.pounds %>)-->
+	</div>
+
+	<% last_weight = weight.pounds %>
+	<!--
+	<li><%= "#{weight.date.strftime("%a #{weight.date.day.ordinalize} %b, %Y")} #{initial_weight - weight.pounds}" %></li>
+	-->
+<% end %>
+
+<div id="clear" />

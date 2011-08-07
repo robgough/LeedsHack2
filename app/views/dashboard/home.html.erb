@@ -1,17 +1,21 @@
 <h1><%= @active_date.strftime("%A #{@active_date.day.ordinalize} %B, %Y") %></h1>
-<h2>Food Diary</h2>
+
 <a href="?active_date=
 	<%= @active_date.yesterday.strftime("%Y_%m_%d") %>" alt="The previous day">
+	&#x21e0;
 	<%= @active_date.yesterday.strftime("%A #{@active_date.day.ordinalize} %B") %>
 </a>
 
 <% if (@active_date < Date.today ) %>
- | 
+ |
 	<a href="?active_date=
 		<%= @active_date.tomorrow.strftime("%Y_%m_%d") %>" alt="the day after">
 		<%= @active_date.tomorrow.strftime("%A #{@active_date.day.ordinalize} %B") %>
+		&#x21e2;
 	</a>
 <% end %>
+
+<h2>Food Diary</h2>
 
 <% if @foods %>
 <ul>

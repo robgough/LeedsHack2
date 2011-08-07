@@ -1,0 +1,110 @@
+html, body {
+	font-family:Helvetica;
+	/*background:#D9E7E2;*/
+	background:#EBEEE3;
+	text-shadow: 1px 1px 0 white;
+}
+
+h1 {
+	font-size:2em;
+}
+
+p {
+	font-family:georgia;
+	font-size:1.2em;
+	text-align:justify;
+}
+
+p.tagline {
+	margin-left:20px;
+	margin-top:-50px;
+	font-size:1em;
+}
+
+#container {
+	width:700px;
+	margin:auto;
+}
+
+#footer>p {
+	text-align:right;
+	clear:both;
+}
+
+a:hover, a:link, a:visited, a:active {
+	color:black;
+	text-decoration:none;
+	padding-bottom:2px;
+	border-bottom:1px solid black;
+	font-size:0.9em;
+}
+
+form {
+	text-align:right;
+}
+
+input {
+	border:1px solid #999;
+	padding:5px;
+	background:white;
+	width:300px;
+	font-size:1.2em;
+	color:#AEAEAE;
+}
+
+#clear {
+	clear:both;
+}
+
+/* days colouring */
+
+.day {
+	font-weight:bold;
+	font-size:1.2em;
+	padding:1em;
+	background-color:#F6F2F4;
+	margin:1px;
+	float:left;
+	text-align:center;
+	border-radius:0.3em;
+}
+
+.good {
+	color:green;
+}
+
+.bad {
+	color:red;
+}
+
+.meh {
+	color:silver;
+}
+
+#totals {
+}
+
+#totals>p {
+	font-size:0.8em;
+	text-align:right;
+}
+
+.total {
+	font-size:1.5em;
+}
+
+.change {
+font-weight:bold;
+font-size:1.3em;
+padding:0.5em;
+margin:1px;
+float:left;
+text-align:right;
+border-radius:0.3em;
+width:20px;
+}
+
+.up {
+}
+.down {
+}
