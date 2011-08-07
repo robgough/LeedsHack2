@@ -25,6 +25,9 @@ h1, h2, h3 {
 h1 {
 	font-size:1.3em;
 	font-weight:bold;
+}
+
+h1.dashboard {
 	text-align:center;
 }
 

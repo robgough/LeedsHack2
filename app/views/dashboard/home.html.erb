@@ -1,4 +1,4 @@
-<h1><%= @active_date.strftime("%A #{@active_date.day.ordinalize} %B, %Y") %></h1>
+<h1 class="dashboard"><%= @active_date.strftime("%A #{@active_date.day.ordinalize} %B, %Y") %></h1>
 <div id="date_nav">
 	<a href="?active_date=
 		<%= @active_date.yesterday.strftime("%Y_%m_%d") %>" alt="The previous day">
