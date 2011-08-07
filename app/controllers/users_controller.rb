@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(params[:user])
+    @user.email.downcase!
   	if (@user.save)
   		redirect_to root_url, :notice => "You're so cool, we've let you in!"
   	else
