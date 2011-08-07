@@ -36,5 +36,10 @@ It's a simple way of being able to track weight loss progress, and share your pr
       - Next Weight Target
       - Show Public Calendar
 
+### TODO
+(other than the features above)
+- Deploy to a server
+- Settings
+
 [1]:http://robgough.net
 [2]:http://leedshack.com

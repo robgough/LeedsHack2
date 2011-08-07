@@ -23,7 +23,7 @@
 <ul class="foods">
 	<% @foods.each do |x| %>
 		<li>
-			<%= "#{x.food} (#{x.calories})" %> 
+			<%= "#{x.food} (#{x.calories} kcal)" %> 
 			<%= link_to "x", {:controller =>"foods", :action => "destroy", :id => x.id, :active_date => @active_date.strftime("%Y_%m_%d")}, :confirm => "Are you sure?", :method => :delete %>
 		</li>
 	<% end %>
@@ -37,6 +37,7 @@
 		<%= hidden_field_tag :active_date, @active_date.strftime("%Y_%m_%d") %>
 		<br />
 		<button type="submit" class="small red awesome">Add</button>
+		<%= @calorie_total %> total calories today.
 	</p>
 <% end %>
 

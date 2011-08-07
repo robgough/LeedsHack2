@@ -6,5 +6,10 @@ class DashboardController < ApplicationController
 
 		@foods = Food.by_user_on_date(current_user, @active_date)
 		@weight = Weight.by_user_on_date(current_user, @active_date)[0]
+
+		@calorie_total = 0;
+		@foods.each do |x|
+			@calorie_total += x.calories if x.calories
+		end
 	end
 end

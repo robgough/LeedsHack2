@@ -133,3 +133,32 @@ input {
 .yellow.awesome {
 	background-color: #ffb515;
 }
+
+/* Profile Calendar */
+.day {
+	background-color:rgba(255, 255, 255, 0.6);
+	margin:1px 1px;
+	padding:5px;
+	float:left;
+	font-size:3em;
+	text-shadow: 1px 1px 0 white;
+	min-width:1.4em;
+	text-align:center;
+	border-radius:0.2em;
+}
+
+.clear {
+	clear:both;
+}
+
+.bad {
+	color:red;
+}
+
+.good {
+	color:green;
+}
+
+.meh {
+	color:silver;
+}
