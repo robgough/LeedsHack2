@@ -47,6 +47,22 @@ nav {
 	text-align:center;
 }
 
+/* Flash */
+
+#flash_alert {
+	border:1px solid #CC3333;
+	margin: 20px 0px;
+	padding:10px;
+	background-color:rgba(255, 0, 0, 0.1);
+}
+
+#flash_notice {
+	border:1px solid yellow;
+	margin: 20px 0px;
+	padding:10px;
+	background-color:rgba(255, 255, 0, 0.1);
+}
+
 /* Hyperlinks */
 
 a:link, a:hover, a:visited, a:active {
@@ -143,7 +159,7 @@ input {
 	margin:1px 1px;
 	padding:5px;
 	float:left;
-	font-size:3em;
+	font-size:1.2em;
 	text-shadow: 1px 1px 0 white;
 	min-width:1.4em;
 	text-align:center;
