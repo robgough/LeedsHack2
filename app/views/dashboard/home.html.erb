@@ -1,24 +1,26 @@
 <h1><%= @active_date.strftime("%A #{@active_date.day.ordinalize} %B, %Y") %></h1>
-
-<a href="?active_date=
-	<%= @active_date.yesterday.strftime("%Y_%m_%d") %>" alt="The previous day">
-	&#x21e0;
-	<%= @active_date.yesterday.strftime("%A #{@active_date.day.ordinalize} %B") %>
-</a>
-
-<% if (@active_date < Date.today ) %>
- |
+<div id="date_nav">
 	<a href="?active_date=
-		<%= @active_date.tomorrow.strftime("%Y_%m_%d") %>" alt="the day after">
-		<%= @active_date.tomorrow.strftime("%A #{@active_date.day.ordinalize} %B") %>
-		&#x21e2;
+		<%= @active_date.yesterday.strftime("%Y_%m_%d") %>" alt="The previous day">
+		&#x21e0; Back
 	</a>
-<% end %>
+	<% if (@active_date < Date.today ) %>
+		|
+		<a href="?active_date=<%= Date.today.strftime("%Y_%m_%d") %>" alt="today">Today</a>
+		|
+		<a href="?active_date=
+			<%= @active_date.tomorrow.strftime("%Y_%m_%d") %>" alt="the day after">
+			Forward &#x21e2;
+		</a>
+	<% else %>
+	| Today | Forward &#x21e2;
+	<% end %>
+</div>
 
 <h2>Food Diary</h2>
 
 <% if @foods %>
-<ul>
+<ul class="foods">
 	<% @foods.each do |x| %>
 		<li>
 			<%= "#{x.food} (#{x.calories})" %> 
@@ -34,14 +36,14 @@
 		<%= text_field_tag :calories, "", :placeholder => "kcal" %>
 		<%= hidden_field_tag :active_date, @active_date.strftime("%Y_%m_%d") %>
 		<br />
-		<%= submit_tag(value="Add") %>
+		<button type="submit" class="small red awesome">Add</button>
 	</p>
 <% end %>
 
 <h2>Todays Weight</h2>
 
 <% if @weight %>
-<p><%= "Today's weight is #{@weight.pounds} pounds." %></p>
+<p><%= "#{@weight.pounds} pounds. Enter again below to change." %></p>
 <% else %>
 <p>You've not entered a weight yet.</p>
 <% end %> 
@@ -52,6 +54,6 @@
 		<%= text_field_tag :weight_in_stone, "", :placeholder => "stone pounds fraction"  %>
 		<%= hidden_field_tag :active_date, @active_date.strftime("%Y_%m_%d") %>
 		<br />
-		<%= submit_tag(value="Add") %>
+		<button type="submit" class="small red awesome">Add</button>
 	</p>
 <% end %>

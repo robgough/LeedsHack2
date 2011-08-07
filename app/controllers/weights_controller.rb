@@ -12,7 +12,7 @@ class WeightsController < ApplicationController
 
   	## stick some code in here to check stones
   	
-  	if current_user
+  	if current_user && pounds > 0
   		existing_weight = Weight.by_user_on_date(current_user, active_date)[0]
   		if (existing_weight)
   			existing_weight.pounds = pounds
