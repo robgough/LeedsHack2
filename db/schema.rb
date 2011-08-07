@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110806195837) do
+ActiveRecord::Schema.define(:version => 20110807082916) do
 
   create_table "foods", :force => true do |t|
     t.integer  "user_id"
@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(:version => 20110806195837) do
     t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "next_goal_weight"
+    t.string   "name"
+    t.string   "daily_calories"
   end
 
   create_table "weights", :force => true do |t|

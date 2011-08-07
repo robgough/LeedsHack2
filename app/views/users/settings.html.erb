@@ -1,0 +1,14 @@
+<h1>Settings</h1>
+
+<%= form_for @user do |f| %>
+	Email: (used for logging in)<br />
+	<%= f.text_field :email, :placeholder => 'email' %>
+	<br />Name: (optional)<br />
+	<%= f.text_field :name, :placeholder => 'what do you like to be called?' %>
+	<br />Next goal weight: (in pounds please)<br />
+	<%= f.text_field :next_goal_weight, :placeholder => 'next goal weight' %>
+	<br />Daily calorie limit:<br />
+	<%= f.text_field :daily_calories, :placeholder => 'suggested kcal per day' %>
+	<br />
+	<button type="submit" class="small red awesome">Save</button>
+<% end %>

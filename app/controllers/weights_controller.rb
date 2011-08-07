@@ -9,8 +9,6 @@ class WeightsController < ApplicationController
   		pounds = pounds + stone_weight_array[1].to_f
   		pounds = pounds + stone_weight_array[2].to_f
   	end
-
-  	## stick some code in here to check stones
   	
   	if current_user && pounds  > 0
   		existing_weight = Weight.by_user_on_date(current_user, active_date)[0]

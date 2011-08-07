@@ -16,7 +16,7 @@
 		<%= current_user.email %>
 		<%= link_to "Dashboard", dashboard_path %>
 		<%= link_to "Profile", user_path(current_user) %>
-		<%= link_to "❁", '' %><!-- settings -->
+		<%= link_to "❁", settings_users_path %>
 		<%= link_to "Logout", logout_path %>
 	<% else %>
 		<%= link_to "Join", join_path %> or 

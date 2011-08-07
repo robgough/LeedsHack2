@@ -39,6 +39,18 @@ class UsersController < ApplicationController
     @weight_change.map do |x|
       @total_loss = @total_loss + x.to_f
     end
+  end
 
+  def settings
+    @user = User.find(current_user.id)
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      redirect_to(:controller => 'dashboard', :action => 'home')
+    else
+      render :action => 'edit'
+    end
   end
 end

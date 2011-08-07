@@ -6,7 +6,11 @@ LeedsHack2::Application.routes.draw do
   root :to => "sessions#new"
   resources :foods
   resources :weights
-  resources :users
+  resources :users do
+    collection do
+      get 'settings'
+    end
+  end
   resources :sessions
   resources :dashboard do
     collection do 
