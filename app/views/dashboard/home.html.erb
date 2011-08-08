@@ -37,7 +37,8 @@
 		<%= hidden_field_tag :active_date, @active_date.strftime("%Y_%m_%d") %>
 		<br />
 		<button type="submit" class="small red awesome">Add</button>
-		<%= @calorie_total %> total calories today. <%= "#{number_to_human(current_user.daily_calories.to_f - @calorie_total, :strip_insignificant_zeros => true)} left of #{current_user.daily_calories}." if current_user.daily_calories.to_f > 0 %>
+		<%= @calorie_total %> total calories today. 
+		<%= "#{"%g" % (current_user.daily_calories.to_f - @calorie_total)} left of #{current_user.daily_calories}." if current_user.daily_calories.to_f > 0 %>
 	</p>
 <% end %>
 
@@ -57,7 +58,7 @@
 		<br />
 		<button type="submit" class="small red awesome">Add</button>
 		<% if @weight && current_user.next_goal_weight.to_f > 0 %>
-		<%= number_to_human(@weight.pounds - current_user.next_goal_weight.to_f, :strip_insignificant_zeros => true) %> pounds til your next goal!
+		<%= "%g" % (@weight.pounds - current_user.next_goal_weight.to_f) %> pounds til your next goal!
 		<% end %>
 	</p>
 <% end %>
