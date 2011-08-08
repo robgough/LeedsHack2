@@ -9,6 +9,8 @@
 	<%= f.text_field :next_goal_weight, :placeholder => 'next goal weight' %>
 	<br />Daily calorie limit:<br />
 	<%= f.text_field :daily_calories, :placeholder => 'suggested kcal per day' %>
-	<br />
+	<br /><br />
+	Show your profile to everyone? <%= f.check_box :public_profile %> 
+	<br /><br />
 	<button type="submit" class="small red awesome">Save</button>
 <% end %>

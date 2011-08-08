@@ -14,3 +14,13 @@
 		</div>
 	<% end %>
 	<div class="clear" />
+<% if @user.id == current_user.id %>
+	<br />
+	<% if @user.public_profile %>
+		<p>Please note this page is available to anyone at <a href="">this link.</a> 
+		If you wish to make it private you can change your settings <a href="<%= settings_users_path %>" alt="settings">here</a>.</p>
+	<% else %>
+		<p>Your profile is currently set to private. If you would like it to be publically available
+		then you can change your setting <a href="<%= settings_users_path %>" alt="settings">here</a>.</p>
+	<% end %>
+<% end %>

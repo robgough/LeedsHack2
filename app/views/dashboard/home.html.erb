@@ -56,7 +56,7 @@
 		<%= hidden_field_tag :active_date, @active_date.strftime("%Y_%m_%d") %>
 		<br />
 		<button type="submit" class="small red awesome">Add</button>
-		<% if current_user.next_goal_weight.to_f > 0 %>
+		<% if @weight && current_user.next_goal_weight.to_f > 0 %>
 		<%= number_to_human(@weight.pounds - current_user.next_goal_weight.to_f, :strip_insignificant_zeros => true) %> pounds til your next goal!
 		<% end %>
 	</p>

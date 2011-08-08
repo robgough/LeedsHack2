@@ -1,5 +1,11 @@
 class User < ActiveRecord::Base
-	attr_accessible :email, :password, :password_confirmation, :name, :next_goal_weight, :daily_calories
+	attr_accessible :email, 
+					:password, 
+					:password_confirmation, 
+					:name, 
+					:next_goal_weight, 
+					:daily_calories, 
+					:public_profile
 
 	has_many :foods, :dependent => :destroy
 	has_many :weights, :dependent => :destroy

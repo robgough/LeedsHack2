@@ -16,6 +16,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
+    if !@user.public_profile && @user != current_user
+      flash[:notice] = "I'm afraid that user has set their profile to private."
+      redirect_to dashboard_url
+    end
+
     @weight_change = Array.new
     last_weight = nil
 
