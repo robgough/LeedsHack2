@@ -30,7 +30,13 @@
 
 	<%= yield %>
 
-	<%= debug(params) if Rails.env.development? %>
+	<div id="footer">
+		Have a problem or just want to say hello? <a href="mailto:rob@robgough.net">Send me an email</a><br />
+		This site is currently in beta<br />
+		Version 0.1.2<br />
+		Made by <a href="http://robgough.net">Rob Gough</a>
+		<%= debug(params) if Rails.env.development? %>
+	</div>
 </div>
 </body>
 </html>
