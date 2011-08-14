@@ -5,6 +5,7 @@ tmp/
 config/database.yml
 config/*.sphinx.conf
 config/s3_credentials.yml
+config/deploy.rb
 *~
 *.cache
 *.log
