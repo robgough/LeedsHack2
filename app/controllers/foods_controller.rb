@@ -1,4 +1,6 @@
 class FoodsController < ApplicationController
+  before_filter :authenticate
+  
   def create
   	active_date = Date.strptime(params[:active_date], "%Y_%m_%d") if params[:active_date]
 

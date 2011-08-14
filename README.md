@@ -36,10 +36,14 @@ It's a simple way of being able to track weight loss progress, and share your pr
       - Next Weight Target
       - Show Public Calendar
 
-### TODO
-(other than the features above)
-- Deploy to a server
-- Settings
+### NEXT FEATURES IN ORDER OF PRIORITY
+- Easy/Safe & Quick Deployment
+- Emailing
+- Forgotten Passwords 
+- Graph of Daily Calories
+    - Last Week
+    - Last Month
+- 'Quick Select' Previous days entries.
 
 [1]:http://robgough.net
 [2]:http://leedshack.com
