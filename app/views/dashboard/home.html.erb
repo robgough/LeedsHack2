@@ -6,7 +6,7 @@
 	</a>
 	<% if (@active_date < Date.today ) %>
 		|
-		<a href="?active_date=<%= Date.today.strftime("%Y_%m_%d") %>" alt="today">Today</a>
+		<%= link_to 'Today', dashboard_url %>
 		|
 		<a href="?active_date=
 			<%= @active_date.tomorrow.strftime("%Y_%m_%d") %>" alt="the day after">
