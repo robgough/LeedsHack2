@@ -44,6 +44,9 @@ It's a simple way of being able to track weight loss progress, and share your pr
     - Last Week
     - Last Month
 - 'Quick Select' Previous days entries.
+- Weekly Printout/Overview
+- tag inputs/foods
+    - inline e.g. "Special K #breakfast"
 
 [1]:http://robgough.net
 [2]:http://leedshack.com
