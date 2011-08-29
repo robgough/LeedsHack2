@@ -2,6 +2,8 @@
 
 <h2>Sign up</h2>
 
+<p>Hey! I'm really excited you want to join us. Good luck with your weight loss!</p>
+
 <%= form_for @user do |f| %>
 	<% if @user.errors.any? %>
 		<div class="error_messages">
@@ -20,5 +22,5 @@
 		<%= f.password_field :password_confirmation, :placeholder => "password (again)" %>
 	</p>
 
-	<button type="submit" class="small red awesome">Join</button>
+	<button type="submit" class="small red awesome">Join</button> or <%= link_to 'go to login', login_url %>. 
 <% end %>
