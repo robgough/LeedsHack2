@@ -26,7 +26,10 @@ class UsersController < ApplicationController
     @weight_change = Array.new
     last_weight = nil
 
-    (Date.today - 30).upto(Date.today) do |day|
+    @history_days = 30
+    @history_days = @user.history_days if @user.history_days != nil && @user.history_days > 0
+
+    (Date.today - @history_days).upto(Date.today) do |day|
       #@weight_change << day.to_s
       weight = @user.weights.find_by_date(day)
 

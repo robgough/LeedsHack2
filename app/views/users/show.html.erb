@@ -1,6 +1,6 @@
 <h1>Profile</h1>
 
-	<h2>The Last 30 Days</h2>
+	<h2>The Last <%= @history_days %> Days</h2>
 	<p>Total <%= @total_loss %> pounds lost.</p>
 	<br />
 	<% @weight_change.each do |weight| %>
@@ -20,7 +20,7 @@
 		<p>Please note this page is available to anyone at <a href="">this link.</a> 
 		If you wish to make it private you can change your settings <a href="<%= settings_users_path %>" alt="settings">here</a>.</p>
 	<% else %>
-		<p>Your profile is currently set to private. If you would like it to be publically available
+		<p>Your profile is currently set to private. If you would like it to be publicly available
 		then you can change your setting <a href="<%= settings_users_path %>" alt="settings">here</a>.</p>
 	<% end %>
 <% end %>

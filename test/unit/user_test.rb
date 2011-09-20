@@ -7,15 +7,21 @@ class UserTest < ActiveSupport::TestCase
   end
 end
 
+
 # == Schema Information
 #
 # Table name: users
 #
-#  id            :integer         not null, primary key
-#  email         :string(255)
-#  password_hash :string(255)
-#  password_salt :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id               :integer         not null, primary key
+#  email            :string(255)
+#  password_hash    :string(255)
+#  password_salt    :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#  next_goal_weight :float
+#  name             :string(255)
+#  daily_calories   :string(255)
+#  public_profile   :boolean         default(TRUE)
+#  history_days     :integer
 #
 

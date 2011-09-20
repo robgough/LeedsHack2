@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110808100916) do
+ActiveRecord::Schema.define(:version => 20110920200425) do
 
   create_table "foods", :force => true do |t|
     t.integer  "user_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20110808100916) do
     t.string   "name"
     t.string   "daily_calories"
     t.boolean  "public_profile",   :default => true
+    t.integer  "history_days"
   end
 
   create_table "weights", :force => true do |t|
