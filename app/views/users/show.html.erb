@@ -30,7 +30,7 @@
 <% current_day = nil %>
 <% @food_log.each do |nom| %>
 	<% if current_day != nom.date %>
-		<%= "<br /><br />" if current_day != nil %>
+		<%= raw "<br /><br />" if current_day != nil %>
 		<%= nom.date.strftime("%A #{nom.date.day.ordinalize}") %>
 		<% current_day = nom.date %>
 		<hr />
