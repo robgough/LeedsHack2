@@ -24,3 +24,15 @@
 		then you can change your setting <a href="<%= settings_users_path %>" alt="settings">here</a>.</p>
 	<% end %>
 <% end %>
+
+<% current_day = nil %>
+<% @food_log.each do |nom| %>
+	<% if current_day != nom.date %>
+		<br /><br />
+		<%= nom.date.strftime("%A #{nom.date.day.ordinalize}") %>
+		<% current_day = nom.date %>
+		<hr />
+	<% end %>
+	<%= nom.food %> (<%= nom.calories %> kcal)
+	<br />
+<% end %>

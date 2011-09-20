@@ -8,6 +8,8 @@ class Food < ActiveRecord::Base
 	def self.by_user_on_date(user, date)
 		where(:user_id => user.id, :date => date)
 	end
+
+	scope :since, lambda {|time| where("date > ?", time) }
 end
 
 # == Schema Information

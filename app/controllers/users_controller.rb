@@ -49,6 +49,8 @@ class UsersController < ApplicationController
     @weight_change.map do |x|
       @total_loss = @total_loss + x.to_f
     end
+
+    @food_log = @user.foods.since(Date.today - 8).order('foods.date DESC') # 7 (days) - 1 = 8
   end
 
   def settings
