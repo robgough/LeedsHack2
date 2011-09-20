@@ -4,16 +4,16 @@
 		<%= @active_date.yesterday.strftime("%Y_%m_%d") %>" alt="The previous day">
 		&#x21e0; Back
 	</a>
+	|
+	<%= link_to 'Today', dashboard_url %>
+	|
 	<% if (@active_date < Date.today ) %>
-		|
-		<%= link_to 'Today', dashboard_url %>
-		|
 		<a href="?active_date=
 			<%= @active_date.tomorrow.strftime("%Y_%m_%d") %>" alt="the day after">
 			Forward &#x21e2;
 		</a>
 	<% else %>
-	| Today | Forward &#x21e2;
+	Forward &#x21e2;
 	<% end %>
 </div>
 
