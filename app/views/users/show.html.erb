@@ -47,7 +47,6 @@
 $(function () {
 	var options = {
 		series: {
-	        
 			color: "rgb(204, 51, 51)", //#CC3333
 			label: "Weight (Pounds)",
 	        lines: { show: true },
@@ -61,6 +60,7 @@ $(function () {
     	}
     };
     var data = [];
+    var data2 = [];
     var placeholder = $("#placeholder");
     var dataurl = "http://localhost:3000/weights/<%= @user.id %>.json";
 
@@ -68,8 +68,24 @@ $(function () {
             for (var i = 0; i < series.length; i++) {
             	data.push([new Date(series[i]["ticks"]),series[i]["weight"]["pounds"]]);
 			};
+
+            //for (var i = 0; i < series.length; i++) {
+            //	data.push([new Date(series[i]["ticks"]),series[i]["weight"]["pounds"]]);
+			//};
+
+			data2.push([new Date(series[0]["ticks"]), <%= current_user.next_goal_weight.to_f %>]);
+			data2.push([new Date(series[series.length -1]["ticks"]), <%= current_user.next_goal_weight.to_f %>]);
+
+			// current_user.next_goal_weight.to_f
+
+
             
-            $.plot(placeholder, [data], options);
+            $.plot(placeholder, [data, {
+            	data: data2,
+            	points: { show: false },
+				color: "Green", //#CC3333
+				label: "Next Goal"
+            }], options);
          }
 
     $.ajax({
