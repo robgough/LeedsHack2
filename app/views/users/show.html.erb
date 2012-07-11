@@ -76,15 +76,43 @@ $(function () {
 			data2.push([new Date(series[0]["ticks"]), <%= current_user.next_goal_weight.to_f %>]);
 			data2.push([new Date(series[series.length -1]["ticks"]), <%= current_user.next_goal_weight.to_f %>]);
 
-			// current_user.next_goal_weight.to_f
+			var d3 = [];
+			var daysAverage = 4;
 
+			for (var i = 0; i < series.length; i++) {
+
+				if (i > daysAverage - 1) {
+					var total = series[i]["weight"]["pounds"];
+					var divider = 1;
+					var startTicks = series[i]["ticks"];
+
+					for (var x = 0; x < daysAverage; x++) {
+						ticks = series[i - x]["ticks"];
+						if ((startTicks - ticks) < (86400 * 1000 * daysAverage)) {
+							divider = divider + 1;
+							total = total + series[i - x]["weight"]["pounds"];
+						}
+					}
+					if (divider > daysAverage - 1)
+						d3.push([new Date(series[i]["ticks"]), total / divider])
+
+				}
+
+			}
 
             
-            $.plot(placeholder, [data, {
+            $.plot(placeholder, [{
             	data: data2,
             	points: { show: false },
+            	lines: { show: true },
 				color: "Green", //#CC3333
 				label: "Next Goal"
+            }, data, {
+            	data: d3,
+            	points: { show: false },
+            	lines: { show: true }, 
+            	color: "blue",
+            	label: "4 Day Average"
             }], options);
          }
 
