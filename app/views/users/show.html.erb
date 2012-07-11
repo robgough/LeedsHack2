@@ -62,7 +62,7 @@ $(function () {
     };
     var data = [];
     var placeholder = $("#placeholder");
-    var dataurl = "http://localhost:3000/weights/1.json";
+    var dataurl = "http://localhost:3000/weights/<%= @user.id %>.json";
 
     function onDataReceived(series) {
             for (var i = 0; i < series.length; i++) {
