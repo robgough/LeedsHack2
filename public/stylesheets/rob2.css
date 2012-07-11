@@ -194,3 +194,9 @@ input {
 .meh {
 	color:silver;
 }
+
+/* Graph */
+
+#placeholder {
+	margin:10px 0px 10px 0px;
+}

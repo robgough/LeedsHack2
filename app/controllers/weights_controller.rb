@@ -22,4 +22,16 @@ class WeightsController < ApplicationController
      
     redirect_to :controller => 'dashboard', :action => 'home', :active_date => params[:active_date]
   end
+
+  def show
+
+    @weights = Weight.find_all_by_user_id(params[:id], :order => 'date asc')
+
+
+    respond_to do |format|
+      format.json { render :json => @weights }
+      format.xml { render :xml => @weights }
+    end
+  end
+
 end

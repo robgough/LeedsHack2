@@ -3,7 +3,10 @@
 <head>
   <title>Weighted Down</title>
   <%= stylesheet_link_tag :all %>
+
   <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "jquery.flot.min.js" %>
+
   <%= csrf_meta_tag %>
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" /> 
   <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
@@ -22,6 +25,7 @@
 
 		</script>
 	<% end %>
+
 </head>
 <body>
 <div id="container">

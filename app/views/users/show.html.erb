@@ -1,5 +1,8 @@
 <h1>Profile</h1>
 
+
+	<div id="placeholder" style="width:600px;height:300px;"></div>
+
 	<h2>The Last <%= @history_days %> Days</h2>
 	<p>Total <%= @total_loss %> pounds lost.</p>
 	<br />
@@ -38,3 +41,42 @@
 	<%= nom.food %> (<%= nom.calories %> kcal)
 	<br />
 <% end %>
+
+<script type="text/javascript">
+
+$(function () {
+	var options = {
+		series: {
+	        
+			color: "rgb(204, 51, 51)", //#CC3333
+			label: "Weight (Pounds)",
+	        lines: { show: true },
+	        points: { show: true }
+    	},
+    	xaxis: { 	mode: "time", 
+	        		timeformat: "%d/%m/%y"
+	    },
+    	legend: {
+    		backgroundOpacity: 0
+    	}
+    };
+    var data = [];
+    var placeholder = $("#placeholder");
+    var dataurl = "http://localhost:3000/weights/1.json";
+
+    function onDataReceived(series) {
+            for (var i = 0; i < series.length; i++) {
+            	data.push([new Date(series[i]["ticks"]),series[i]["weight"]["pounds"]]);
+			};
+            
+            $.plot(placeholder, [data], options);
+         }
+
+    $.ajax({
+            url: dataurl,
+            method: 'GET',
+            dataType: 'json',
+            success: onDataReceived
+        });
+});
+</script>

@@ -9,6 +9,16 @@ class Weight < ActiveRecord::Base
 	def self.by_user_on_date(user, date)
 		where(:user_id => user.id, :date => date)
 	end
+
+	def ticks
+		date.strftime("%s").to_i * 1000
+	end
+
+	def as_json(options = { })
+	    h = super(options)
+	    h[:ticks]   = ticks
+	    h
+	end
 end
 # == Schema Information
 #

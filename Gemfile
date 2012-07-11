@@ -11,6 +11,8 @@ gem 'mysql2', '< 0.3'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'capistrano'
 
+gem 'jquery-rails', '>= 1.0.12'
+
 group :development do
 	gem 'annotate'
 end
