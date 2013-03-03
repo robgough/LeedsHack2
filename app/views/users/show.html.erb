@@ -3,7 +3,7 @@
 <style>
 path {
 	stroke-width: 1;
-	fill: none; /* change to none */
+	fill: none;
 }
 
 .line1 {
@@ -34,14 +34,20 @@ path {
 .yaxis line {
 	stroke: lightgrey;
 }
+
+.circle {
+	stroke: none;
+	fill:#cc3333;
+	fill-opacity: .3;
+}
 </style>
 
 <h1>Profile</h1>
 
 <p>Show by <a href="?mode=thirty">last 30 days</a>, <a href="?mode=year">year</a>, or <a href="?mode=all">all time</a>.</p>
 <br />
-<p id="total_loss"></p>
-<p id="current_value"></p>
+<p id="total_loss">Loading...</p>
+<p id="current_value">Selected:</p>
 
 <svg width="600" height="300">
 </svg>
@@ -83,7 +89,7 @@ path {
 
 		var total_loss = data[0]["weight"].pounds - data[data.length-1]["weight"].pounds
 		var lossText = total_loss > 0 ? total_loss + " pounds gained." : Math.abs(total_loss) + " pounds lost."
-		$('p#total_loss').replaceWith(lossText);
+		$('p#total_loss').text(lossText);
 
 		var yScale = d3.scale.linear()
 			.domain([min, max])
@@ -130,9 +136,29 @@ path {
     		})
     		.interpolate("basis");
 
+    	svg.selectAll("circle")
+    		.data(data)
+    		.enter()
+    		.append("circle")
+    		.attr("class", "circle")
+    		.attr("cx", function(d) {
+				return xScale(new Date(d["weight"]["date"]));
+    		})
+    		.attr("cy", function(d) {
+				return yScale(d["weight"]["pounds"]);
+    		})
+    		.attr("r", 3)
+    		.on('mouseout', function() {
+    			$("#current_value").text("Selected:");
+    		})
+    		.on('mouseover', function(d) {
+    			date = new Date(d["weight"].date);
+    			$("#current_value").text("Selected: " + d["weight"].pounds + " pounds on " + date.toDateString());
+    		});
+
     	svg.append("path")
-    	.attr("d", line1(data))
-    	.attr("class", "line1");
+    		.attr("d", line1(data))
+    		.attr("class", "line1");
     };
 
     $.ajax({
