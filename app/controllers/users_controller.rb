@@ -16,12 +16,21 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    begin
+      @user = User.find(params[:id])
+    rescue
+      flash[:notice] = "The user has set their profile to private."
+      redirect_to dashboard_url
+      return
+    end
 
-    if !@user.public_profile && @user != current_user
-      flash[:notice] = "I'm afraid that user has set their profile to private."
+    if !@user.public_profile && (!current_user || @user.id != current_user.id)
+      flash[:notice] = "The user has set their profile to private."
       redirect_to dashboard_url
     end
+
+    @mode = params["mode"]
+    @mode = "month" if @mode.nil?
 
     @weight_change = Array.new
     last_weight = nil
@@ -49,8 +58,6 @@ class UsersController < ApplicationController
     @weight_change.map do |x|
       @total_loss = @total_loss + x.to_f
     end
-
-    @food_log = @user.foods.since(Date.today - 8).order('foods.date DESC') # 7 (days) - 1 = 8
   end
 
   def settings

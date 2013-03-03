@@ -24,13 +24,15 @@ class WeightsController < ApplicationController
   end
 
   def show
+    @mode = params[:mode]
 
-    @weights = Weight.find_all_by_user_id(params[:id], :order => 'date asc')
-
+    @weights = Weight.find_all_by_user_id(params[:id], :order => 'date desc') if @mode == "all"
+    @weights = Weight.where("user_id = ? AND date > ?", params[:id], 365.days.ago).order("date desc")  if @mode == "year"
+    @weights = Weight.where("user_id = ? AND date > ?", params[:id], 30.days.ago).order("date desc") if @mode == "month" || @weights.nil?
 
     respond_to do |format|
-      format.json { render :json => @weights }
-      format.xml { render :xml => @weights }
+      format.json { render :json => @weights.to_json(:only => [:date, :pounds]) }
+      format.xml { render :xml => @weights.to_xml(:only => [:date, :pounds]) }
     end
   end
 

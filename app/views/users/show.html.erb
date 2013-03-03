@@ -1,26 +1,55 @@
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<style>
+path {
+	stroke-width: 1;
+	fill: none; /* change to none */
+}
+
+.line1 {
+	stroke: #cc3333;
+	shape-rendering: geometricPrecision;
+}
+
+.axis {
+	shape-rendering: geometricPrecision;
+}
+
+.xaxis line {
+	stroke: lightgrey;
+}
+
+.xaxis .minor {
+	stroke-opacity: .5;
+}
+
+.xaxis path {
+	display:none;
+}
+
+.xaxis text, .yaxis text {
+	font-size:8px;
+}
+
+.yaxis line {
+	stroke: lightgrey;
+}
+</style>
+
 <h1>Profile</h1>
 
+<p>Show by <a href="?mode=thirty">last 30 days</a>, <a href="?mode=year">year</a>, or <a href="?mode=all">all time</a>.</p>
+<br />
+<p id="total_loss"></p>
+<p id="current_value"></p>
 
-	<div id="placeholder" style="width:600px;height:300px;"></div>
+<svg width="600" height="300">
+</svg>
 
-	<h2>The Last <%= @history_days %> Days</h2>
-	<p>Total <%= @total_loss %> pounds lost.</p>
-	<br />
-	<% @weight_change.each do |weight| %>
-		<%
-			happy_class = 'meh'
-			happy_class = 'bad' if weight > 0
-			happy_class = 'good' if weight < 0
-		%>	
-		<div class="day <%= happy_class %>">
-			<%= number_to_human(weight, :strip_insignificant_zeros => true) %>
-		</div>
-	<% end %>
-	<div class="clear" />
-<% if @user.id == current_user.id %>
+<% if current_user && @user.id == current_user.id %>
 	<br />
 	<% if @user.public_profile %>
-		<p>Please note this page is available to anyone at <a href="">this link.</a> 
+		<p>This page is available to everyone at <a href="">this link.</a> 
 		If you wish to make it private you can change your settings <a href="<%= settings_users_path %>" alt="settings">here</a>.</p>
 	<% else %>
 		<p>Your profile is currently set to private. If you would like it to be publicly available
@@ -28,99 +57,98 @@
 	<% end %>
 <% end %>
 
-<h2>The Last Week</h2>
-
-<% current_day = nil %>
-<% @food_log.each do |nom| %>
-	<% if current_day != nom.date %>
-		<%= raw "<br /><br />" if current_day != nil %>
-		<%= nom.date.strftime("%A #{nom.date.day.ordinalize}") %>
-		<% current_day = nom.date %>
-		<hr />
-	<% end %>
-	<%= nom.food %> (<%= nom.calories %> kcal)
-	<br />
-<% end %>
-
 <script type="text/javascript">
-
-$(function () {
-	var options = {
-		series: {
-			color: "rgb(204, 51, 51)", //#CC3333
-			label: "Weight (Pounds)",
-	        lines: { show: false },
-	        points: { show: true }
-    	},
-    	xaxis: { 	mode: "time", 
-	        		timeformat: "%d/%m/%y"
-	    },
-    	legend: {
-    		backgroundOpacity: 0
-    	}
-    };
-    var data = [];
-    var data2 = [];
-    var placeholder = $("#placeholder");
     var dataurl = "/weights/<%= @user.id %>.json";
 
-    function onDataReceived(series) {
-            for (var i = 0; i < series.length; i++) {
-            	data.push([new Date(series[i]["ticks"]),series[i]["weight"]["pounds"]]);
-			};
+    function onDataReceived(data) {
+		var w = 600,
+			h = 300,
+			padding = 30;
 
-            //for (var i = 0; i < series.length; i++) {
-            //	data.push([new Date(series[i]["ticks"]),series[i]["weight"]["pounds"]]);
-			//};
+		var svg = d3.select("svg");
 
-			data2.push([new Date(series[0]["ticks"]), <%= current_user.next_goal_weight.to_f %>]);
-			data2.push([new Date(series[series.length -1]["ticks"]), <%= current_user.next_goal_weight.to_f %>]);
+		var min = 500,
+			max = 100;
 
-			var d3 = [];
-			var daysAverage = 4;
+		data.forEach(function(d) {
+			var pounds = d["weight"].pounds;
+			if (pounds < min)
+				min = pounds;
+			if (pounds > max)
+				max = pounds;
+		});
 
-			for (var i = 0; i < series.length; i++) {
+		min = min - 5;
+		max = max + 5;
 
-				if (i > daysAverage - 1) {
-					var total = series[i]["weight"]["pounds"];
-					var divider = 1;
-					var startTicks = series[i]["ticks"];
+		var total_loss = data[0]["weight"].pounds - data[data.length-1]["weight"].pounds
+		var lossText = total_loss > 0 ? total_loss + " pounds gained." : Math.abs(total_loss) + " pounds lost."
+		$('p#total_loss').replaceWith(lossText);
 
-					for (var x = 0; x < daysAverage; x++) {
-						ticks = series[i - x]["ticks"];
-						if ((startTicks - ticks) < (86400 * 1000 * daysAverage)) {
-							divider = divider + 1;
-							total = total + series[i - x]["weight"]["pounds"];
-						}
-					}
-					if (divider > daysAverage - 1)
-						d3.push([new Date(series[i]["ticks"]), total / divider]);
+		var yScale = d3.scale.linear()
+			.domain([min, max])
+			.range([h - padding, padding]); // reverse, as top starts at 0
 
-				}
+		var mindate = new Date(data[data.length -1]["weight"]["date"]),
+			maxdate = new Date;
 
-			}
+		var xScale = d3.time.scale()
+			.domain([mindate, maxdate])
+			.range([padding, w - padding]); // width minus padding for both sides
 
-            
-            $.plot(placeholder, [{
-            	data: data2,
-            	points: { show: false },
-            	lines: { show: true },
-				color: "Green", //#CC3333
-				label: "Next Goal"
-            }, data, {
-            	data: d3,
-            	points: { show: false },
-            	lines: { show: true }, 
-            	color: "blue",
-            	label: "4 Day Average"
-            }], options);
-         }
+		var yAxis = d3.svg.axis()
+			.orient("left")
+			.scale(yScale)
+			.tickSize(-w + (padding * 2),0,0);
+
+		var xAxis = d3.svg.axis()
+			.orient("bottom")
+			.scale(xScale)
+			/*
+			.ticks(d3.time.months, 2)
+			.tickSubdivide(1)
+			.tickFormat(d3.time.format("%b '%y"))*/;
+
+		svg.append("g")
+			.attr("class", "yaxis")
+			.attr("transform", "translate(" + padding + ",0)")
+			.call(yAxis);
+
+		svg.append("g")
+			.attr("class", "xaxis")
+			.attr("transform", "translate(0, " + (h - padding) + ")")
+			.call(xAxis);
+
+    	var line1 = d3.svg.line()
+    		.y(function(d, i) {
+    			console.log("plotting X value for " + d["weight"]["pounds"] + " to be at " + yScale(d["weight"]["pounds"]));
+    			return yScale(d["weight"]["pounds"]);
+    		})
+    		.x(function(d) {
+    			console.log("plotting Y value for " + d["weight"]["date"] + " to be at " + xScale(new Date(d["weight"]["date"])));
+    			return xScale(new Date(d["weight"]["date"]));
+    		})
+    		.interpolate("basis");
+
+    	svg.append("path")
+    	.attr("d", line1(data))
+    	.attr("class", "line1")
+    	.on("mouseover", function(d) {
+    		console.log("hover");
+    		$('p#current_value').replaceWith("hover");
+    	})
+    	.on("mouseout", function() {
+    		$('p#current_value').replaceWith("lost");
+    		console.log("out");
+    	});
+    };
 
     $.ajax({
-            url: dataurl,
-            method: 'GET',
-            dataType: 'json',
-            success: onDataReceived
-        });
-});
+		url: dataurl,
+		method: 'GET',
+		data: 'mode=<%= @mode %>',
+		dataType: 'json',
+		success: onDataReceived
+	});
 </script>
+
