@@ -132,15 +132,7 @@ path {
 
     	svg.append("path")
     	.attr("d", line1(data))
-    	.attr("class", "line1")
-    	.on("mouseover", function(d) {
-    		console.log("hover");
-    		$('p#current_value').replaceWith("hover");
-    	})
-    	.on("mouseout", function() {
-    		$('p#current_value').replaceWith("lost");
-    		console.log("out");
-    	});
+    	.attr("class", "line1");
     };
 
     $.ajax({
