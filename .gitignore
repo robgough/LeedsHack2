@@ -23,4 +23,5 @@ db/*.sqlite3
 *.tmproj
 *.sw?
 post-commit
-*.sublime*
+*.sublime
+*.powder
